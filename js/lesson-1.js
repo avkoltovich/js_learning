@@ -69,7 +69,7 @@ function createArray(start, end) {
 
 // Индекс массы тела
 function BMI(weight, height) {
-  return (weight/(height * height / 100)).toFixed(2);
+  return (weight / (height * height / 100)).toFixed(2);
 }
 
 // Максимальное число из введенных
@@ -103,24 +103,26 @@ function month(n) {
   if (n >= 3 && n < 6) return 'Spring';
   if (n >= 6 && n < 9) return 'Summer';
   if (n >= 9 && n < 12) return 'Autumn';
-  else return 'А ты точно грамотный?'
+  else return 'А ты точно грамотный?';
 }
 
 // Подставляет окончание возраста
 function age(n) {
   let div = n % 10;
   if ((n >= 5 && n <= 19) || (div >= 5 && div <= 9) || div == 0) return n + ' лет';
-  if (n == 1 || div == 1) return n + ' год';
+  if (div == 1) return n + ' год';
   else return n + ' года';
 }
+
+console.log(age(32));
 
 // Квадраты и кубы диапазона
 function sqAndCub(start, end) {
   let arraySq = [];
   let arrayCub = [];
   for (let i = 0; i <= end - start; i++) {
-    arraySq[i] = (start + i)**2;
-    arrayCub[i] = (start + i)**3;
+    arraySq[i] = (start + i) ** 2;
+    arrayCub[i] = (start + i) ** 3;
   }
   console.log(`Квадраты чисел от ${start} до ${end}: ` + arraySq);
   console.log(`Кубы чисел от ${start} до ${end}: ` + arrayCub);
@@ -183,8 +185,49 @@ function autoMorph(n) {
     j = i;
     while (j >= 1) {
       count++;
-      j /=10;
+      j /= 10;
     }
     if (k % (10 ** count) == i) console.log(`Число ${i} атоморфно. Его квадрат равен: ${k}`);
   }
 }
+// Суммирует все числа, которые делятся на 3 или 5
+function solution(number) {
+  let sum = 0;
+  for (let i = 1; i < number; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
+      sum = sum + i;
+    }
+  }
+  return sum;
+}
+
+// Задачка на очередь в кинотеатре и возможность выдать сдачу кассиром
+function tickets(peopleInLine) {
+  let twentyFive = 0;
+  let fifty = 0;
+
+  for (let key of peopleInLine) {
+    if (key == 25) {
+      twentyFive++;
+    }
+
+    if (key == 50) {
+      if (twentyFive > 0) {
+        twentyFive--;
+        fifty++;
+      } else return "NO";
+    }
+
+    if (key == 100) {
+      if (fifty > 0 && twentyFive > 0) {
+        twentyFive--;
+        fifty--;
+      } else if (fifty == 0 && twentyFive >= 3) {
+        twentyFive -= 3;
+      } else return "NO";
+    }
+  }
+  return "YES";
+}
+
+console.log(tickets([25, 25, 50, 50]));
