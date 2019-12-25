@@ -231,3 +231,18 @@ function tickets(peopleInLine) {
 }
 
 console.log(tickets([25, 25, 50, 50]));
+// Вывод сотен, десятков и единиц
+
+function toObject(number) {
+  if (number > 999) return console.log('Число больше 999');
+  let str = number.toString();
+  let obj = {};
+
+  obj['единицы'] = str[str.length - 1];
+  if (str[str.length - 2]) obj['десятки'] = str[str.length - 2];
+  if (str[str.length - 3]) obj['сотни'] = str[str.length - 3];
+
+  return obj;
+}
+
+console.log(toObject(123));
