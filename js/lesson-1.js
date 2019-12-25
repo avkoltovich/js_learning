@@ -231,6 +231,7 @@ function tickets(peopleInLine) {
 }
 
 console.log(tickets([25, 25, 50, 50]));
+
 // Вывод сотен, десятков и единиц
 
 function toObject(number) {
@@ -246,3 +247,37 @@ function toObject(number) {
 }
 
 console.log(toObject(123));
+
+// Генератор случайных чисел
+
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
+};
+
+// Перемешивает массив в случайном порядке
+
+function shakeArray(array) {
+  let newArray = [];
+  let logArray = [];
+  let swap;
+  for (let i = 0; i < array.length; i++) {
+    do {
+      swap = getRandomInteger(0, array.length - 1);
+    } while (logArray.indexOf(swap) != -1);
+    logArray.push(swap);
+    newArray.push(array[swap]);
+  }
+  return newArray;
+}
+
+// Рандомной длины массив на основе имеющегося
+
+function cropArray(array) {
+  let newArray = [];
+  for (let i = 0; i < getRandomInteger(0, array.length - 1); i++) {
+    newArray.push(array[i]);
+  }
+  return newArray;
+}
+
+console.log(shakeArray([1, 2, 3, 5, 5, 6, 7, 5]));
