@@ -246,7 +246,19 @@ function toObject(number) {
   return obj;
 }
 
-console.log(toObject(123));
+function toObjectMath(number) {
+  if (number > 999) return console.log('Число больше 999');
+  let obj = {};
+  obj['единицы'] = number % 10;
+  number = (number - obj['единицы']) / 10;
+  obj['десятки'] = (number) % 10;
+  number = (number - obj['десятки']) / 10;
+  obj['сотни'] = (number) % 10;
+
+  return obj;
+}
+
+console.log(toObjectMath(123));
 
 // Генератор случайных чисел
 
@@ -255,23 +267,37 @@ function getRandomInteger(min, max) {
 };
 
 // Перемешивает массив в случайном порядке
-
-function shakeArray(array) {
-  let newArray = [];
-  let logArray = [];
-  let swap;
-  for (let i = 0; i < array.length; i++) {
+function shakeArrayMy(array) {
+  var newArray = [];
+  var logArray = [];
+  var swap;
+  for (var i = 0; i < array.length; i++) {
     do {
       swap = getRandomInteger(0, array.length - 1);
     } while (logArray.indexOf(swap) != -1);
     logArray.push(swap);
     newArray.push(array[swap]);
   }
+
+  return newArray;
+}
+
+// Вариант Alexander str (ипользует метод map как цикл)
+var shakeArray = function (array) {
+  var newArray = [];
+  var logArray = [];
+  array.map(function () {
+    do {
+      var swap = getRandomInteger(0, array.length - 1);
+    } while (logArray.indexOf(swap) != -1);
+    logArray.push(swap);
+    newArray.push(array[swap]);
+  })
+
   return newArray;
 }
 
 // Рандомной длины массив на основе имеющегося
-
 function cropArray(array) {
   let newArray = [];
   for (let i = 0; i < getRandomInteger(0, array.length - 1); i++) {
@@ -280,4 +306,37 @@ function cropArray(array) {
   return newArray;
 }
 
-console.log(shakeArray([1, 2, 3, 5, 5, 6, 7, 5]));
+console.log(shakeArray(['a', 'b', 1, 55, 146, 32, 32, [1, 2, 4], true]));
+
+// Перемешиваем массив при помощи метода map
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
+};
+
+var shuffleMap = function (array) {
+  var logArray = [];
+  return array.map(function (key) {
+    do {
+      var swap = getRandomInteger(0, array.length - 1);
+    } while (logArray.indexOf(swap) != -1);
+    logArray.push(swap);
+    key = array[swap];
+    return key;
+  });
+};
+
+console.log(shuffleMap(['a', 'b', 1, 55, 146, 32, 32, [1, 2, 4], true]));
+
+function firstLevel(n) {
+  return function secondLevel(num) {
+    return function thirdLevel(number) {
+      return n + num + number;
+    }
+  }
+}
+
+const first = firstLevel(1);
+const second = first(2);
+const third = second(3);
+
+console.log(third);
