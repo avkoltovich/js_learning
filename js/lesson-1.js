@@ -340,3 +340,13 @@ const second = first(2);
 const third = second(3);
 
 console.log(third);
+
+// const add = x => y => x + y;
+
+// const add = function(x) {
+//   return function(y) {
+//     return x + y;
+//   }
+// }
+
+(() => console.log('Я работаю!'))();
