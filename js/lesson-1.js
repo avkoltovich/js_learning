@@ -342,6 +342,8 @@ const third = second(3);
 
 console.log(third);
 
+// Получает на вход число и складывает цифры этого числа
+
 var sumDigits = function(number) {
   var modifiedNumber = number;
   var sum = 0;
@@ -362,4 +364,4 @@ var addDigits = function(number) {
   return totalSum;
 };
 
-console.log(addDigits(38));
+console.log(addDigits(3851));
