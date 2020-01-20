@@ -327,6 +327,7 @@ var shuffleMap = function (array) {
 
 console.log(shuffleMap(['a', 'b', 1, 55, 146, 32, 32, [1, 2, 4], true]));
 
+// Замыкания
 function firstLevel(n) {
   return function secondLevel(num) {
     return function thirdLevel(number) {
@@ -340,3 +341,25 @@ const second = first(2);
 const third = second(3);
 
 console.log(third);
+
+var sumDigits = function(number) {
+  var modifiedNumber = number;
+  var sum = 0;
+  var currentNumber;
+  while (modifiedNumber) {
+    currentNumber = modifiedNumber % 10;
+    sum += currentNumber;
+    modifiedNumber = (modifiedNumber - currentNumber) / 10;
+  }
+  return sum;
+};
+
+var addDigits = function(number) {
+  var totalSum = number;
+  while (totalSum >= 10) {
+    totalSum = sumDigits(totalSum);
+  }
+  return totalSum;
+};
+
+console.log(addDigits(38));
