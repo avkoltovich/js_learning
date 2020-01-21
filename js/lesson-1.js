@@ -344,7 +344,7 @@ console.log(third);
 
 // Получает на вход число и складывает цифры этого числа
 
-var sumDigits = function(number) {
+var sumDigits = function (number) {
   var modifiedNumber = number;
   var sum = 0;
   var currentNumber;
@@ -356,7 +356,7 @@ var sumDigits = function(number) {
   return sum;
 };
 
-var addDigits = function(number) {
+var addDigits = function (number) {
   var totalSum = number;
   while (totalSum >= 10) {
     totalSum = sumDigits(totalSum);
@@ -365,3 +365,27 @@ var addDigits = function(number) {
 };
 
 console.log(addDigits(3851));
+
+// Реализуйте и экспортируйте по умолчанию функцию,
+// которая принимает на вход два аргумента - количество нулей и количество единиц,
+// и определяет сколько есть способов размещения этих нулей и единиц так,
+// что бы не было двух нулей идущих подряд
+
+var getFactorialNumber = function (n) {
+  var product = 1;
+  for (var i = 1; i <= n; i++) {
+    product *= i;
+  }
+  return product;
+};
+
+var withoutTwoZeros = function (zeros, ones) {
+  var totalCombinations = getFactorialNumber(zeros + ones) / (getFactorialNumber(zeros) * getFactorialNumber(ones));
+  if (zeros < 2) {
+    return totalCombinations;
+  }
+  var twoZerosCombinations = getFactorialNumber(zeros + ones - 1) / (getFactorialNumber(zeros - 1) * getFactorialNumber(ones));
+  return totalCombinations - twoZerosCombinations;
+};
+
+console.log(withoutTwoZeros(2, 4));
