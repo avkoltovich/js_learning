@@ -379,21 +379,24 @@ var getFactorialNumber = function (n) {
   return product;
 };
 
-var totalCombinations = function (zeros, ones) {
+var getTotalCombinations = function (zeros, ones) {
   return getFactorialNumber(zeros + ones) / (getFactorialNumber(zeros) * getFactorialNumber(ones));
 };
 
 var withoutTwoZeros = function (zeros, ones) {
-  var total = totalCombinations(zeros, ones);
+  var total = getTotalCombinations(zeros, ones);
   var withZeros = 0;
   if (zeros < 2) {
     return total;
   }
+  if (zeros - ones > 1) {
+    return 0;
+  }
   for (var i = 1; i < zeros; i++) {
-    withZeros = withZeros + totalCombinations(i, ones);
+    withZeros += getTotalCombinations(i, ones);
   }
   total -= withZeros;
-  return (total > 0) ? total : 0;
+  return total;
 };
 
 console.log(withoutTwoZeros(2, 4));
