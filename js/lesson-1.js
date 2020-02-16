@@ -641,7 +641,7 @@ var addPinsHandlers = function () {
       currentOpenCard.hidden = true;
     }
     currentOpenCard = card;
-    card.hidden = false;
+    currentOpenCard.hidden = false;
     closeButton.addEventListener('click', onCloseButtonClick);
     document.addEventListener('keydown', onCardEscKeydown);
   };
